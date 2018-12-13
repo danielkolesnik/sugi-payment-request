@@ -1,0 +1,29 @@
+{
+  "name": "sugi-payment-request",
+  "version": "0.0.1",
+  "description": "Page for performing actions on some payment request.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielkolesnik/sugi-payment-request.git"
+  },
+  "keywords": [
+    "sugi",
+    "wallet",
+    "payment",
+    "request"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielkolesnik/sugi-payment-request/issues"
+  },
+  "homepage": "https://github.com/danielkolesnik/sugi-payment-request#readme",
+  "dependencies": {
+    "material-components-web": "^0.42.0",
+    "normalize.css": "^8.0.1"
+  }
+}

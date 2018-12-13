@@ -1,0 +1,39 @@
+
+// colors
+@white: #FFFFFF;
+@lightBeige: #FEE3C8;
+@beige: #F9CC9F;
+@black: #333333;
+@brown: #3E262A;
+
+// screen dimensions
+@xsscreen: 480px;
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #FEE3C8;
+}
+
+
+.page-wrapper {
+  padding: 50px;
+  background: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 100%;
+
+  .dialog {
+    height: 100px;
+    background: @white;
+    box-shadow: 0 4px 8px rgba(44, 40, 35, 0.12);
+    border-radius: 8px 8px 0 0;
+    padding: 15px;
+    }
+}
