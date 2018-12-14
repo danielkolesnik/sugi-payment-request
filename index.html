@@ -6,18 +6,64 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic"
+          rel="stylesheet"
+    >
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="node_modules/normalize.css/normalize.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="page-wrapper">
-        <div class="dialog">
-            Some text
+<div class="page-wrapper">
+    <!-- some content on the page displayed depending on class e.g. eth | btc | eur -->
+    <main class="dialog light eth">
+        <h1 class="headline">Payment request</h1>
+        <div id="walletIdentifier">
+                <span>
+                    9233
+                </span>
+            <span>
+                    1000
+                </span>
+            <span>
+                    1000
+                </span>
+            <span>
+                    1000
+                </span>
         </div>
-    </div>
+        <div id="qrCode">
+            <div class="dummy-qr-code"></div>
+        </div>
+        <div class="amount-wrapper">
+            <span id="amount">100</span>
+            <span class="currency"></span>
+        </div>
+        <section class="store-btns-wrapper">
+                <span class="store-btns-headline">
+                    install Sugi wallet
+                </span>
+            <a href="#">
+                <img src="assets/images/appstore.png"
+                     alt="Download Sugi wallet on the AppStore"
+                     title="Download Sugi wallet on the AppStore"
+                     class="store-btn"
+                >
+            </a>
+            <a href="#">
+                <img src="assets/images/googleplay.png"
+                     alt="Get Sugi wallet on Google Play"
+                     title="Get Sugi wallet on Google Play"
+                     class="store-btn"
+                >
+            </a>
+        </section>
+        <a href="#" class="other-wallet-btn" title="Open in alternative wallet">
+            Open in other wallet
+        </a>
+    </main>
+</div>
 
-    <script type="text/javascript" src="script.js"></script>
+<!--<script type="text/javascript" src="script.js"></script>-->
 </body>
 </html>
