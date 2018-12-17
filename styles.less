@@ -1,17 +1,24 @@
-
 // colors
 @white: #FFFFFF;
 @lightBeige: #FEE3C8;
 @beige: #F9CC9F;
+@siteBeige: rgb(250, 238, 228);
 @black: #333333;
 @brown: #3E262A;
+@drkBrown: #382A2C;
 
 // screen dimensions
 @xsscreen: 480px;
 
+// choose color scheme
+@dialogBgClr: @white;
+@dialogClr: @drkBrown;
+@dialogBrdrClr: @drkBrown;
+
 * {
   box-sizing: border-box;
 }
+
 html,
 body {
   height: 100%;
@@ -19,21 +26,174 @@ body {
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #FEE3C8;
+  background-color: @siteBeige;
 }
 
-
 .page-wrapper {
-  padding: 50px;
-  background: rgba(0, 0, 0, 0.3);
+  //background: rgba(0, 0, 0, 0.1);
   width: 100%;
-  height: 100%;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  // Color scheme light
   .dialog {
-    height: 100px;
-    background: @white;
+    min-width: 360px;
+    min-height: 616px;
     box-shadow: 0 4px 8px rgba(44, 40, 35, 0.12);
-    border-radius: 8px 8px 0 0;
-    padding: 15px;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: @dialogBgClr;
+    color: @dialogClr;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .headline {
+      text-align: center;
+      font-size: 1.25em; // +-20px
+      margin: 24px 0 0;
+      padding: 16px 0;
+      font-weight: 500;
     }
+
+    #walletIdentifier {
+      text-align: center;
+      font-size: 18px;
+      padding: 16px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width: auto;
+    }
+
+    #qrCode {
+      height: 220px;
+      width: 220px;
+      margin: 16px 0;
+      background: @white;
+
+      .dummy-qr-code {
+        background: url('assets/images/qr-code-example.png') no-repeat;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .amount-wrapper {
+      font-size: 20px;
+      word-spacing: 3px;
+      padding: 16px 0;
+
+      #amount {
+      }
+
+    }
+
+    .store-btns-wrapper {
+      margin: 16px 0;
+      border: 1px solid @dialogBrdrClr;
+      position: relative;
+      border-radius: 8px;
+      min-width: 80%;
+      padding: 16px;
+      display: flex;
+      align-content: center;
+      justify-content: space-around;
+
+      .store-btns-headline {
+        position: absolute;
+        top: -8px;
+        background-color: @white;
+        padding: 0 15px;
+      }
+
+      a {
+        display: block;
+        width: auto;
+        height: auto;
+        text-decoration: none;
+        img {
+          width: 120px;
+          height: auto;
+        }
+      }
+    }
+
+    .other-wallet-btn {
+      display: none;
+      color: @dialogClr;
+      text-decoration: none;
+      border: 1px solid @dialogBrdrClr;
+      border-radius: 4px;
+      padding: 10px;
+    }
+
+    /*
+        Displaying the ID of the wallet depending on the type.
+    */
+    // when currency = EUR
+    &.eur {
+      #walletIdentifier {
+        span:not(:nth-child(1)) {
+          padding-left: 12px;
+        }
+        span:not(:nth-child(4)) {
+          padding-right: 12px;
+        }
+      }
+
+      #amount:after {
+        content: ' EUR';
+        font-family: inherit;
+        font-size: inherit;
+        color: inherit;
+      }
+    }
+
+    // when currency = BTC || LTH
+    &.btc, &.eth {
+      #walletIdentifier {
+        span:first-child {
+          padding: 0;
+        }
+        span:not(:first-child) {
+          display: none;
+        }
+      }
+
+      .other-wallet-btn {
+        display: block;
+      }
+    }
+
+    // when currency = LTH
+    &.eth {
+      #walletIdentifier {
+
+      }
+
+      #amount:after {
+        content: ' ETH';
+        font-family: inherit;
+        font-size: inherit;
+        color: inherit;
+      }
+    }
+
+    // when currency = BTC
+    &.btc {
+      #walletIdentifier {
+
+      }
+
+      #amount:after {
+        content: ' BTC';
+        font-family: inherit;
+        font-size: inherit;
+        color: inherit;
+      }
+    }
+  }
 }
