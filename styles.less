@@ -1,3 +1,9 @@
+// fonts
+@roboto: 'Roboto';
+@muli: 'Muli';
+@primaryFonts: 'Roboto', sans-serif;
+@secondaryFonts: @muli, sans-serif;
+
 // colors
 @white: #FFFFFF;
 @lightBeige: #FEE3C8;
@@ -6,14 +12,41 @@
 @black: #333333;
 @brown: #3E262A;
 @drkBrown: #382A2C;
+@malachite:  #32A03D;
 
 // screen dimensions
-@xsscreen: 480px;
+@xlscreen: 1280px;
+@lscreen: 1024px;
+@mscreen: 768px;
+@sscreen: 375px;
+@xsscreen: 320px;
 
-// choose color scheme
-@dialogBgClr: @white;
+// media points
+@xxlpoint: ~"(min-width: @{xlscreen})";
+@xlpoint: ~"(max-width: @{xlscreen})";
+@lpoint: ~"(max-width: @{lscreen})";
+@mpoint: ~"(max-width: @{mscreen})";
+@spoint: ~"(max-width: @{sscreen})";
+@xspoint: ~"(max-width: @{xsscreen})";
+
+// header colors
+@headerBgClr: @white;
+@headerBtnBgClr: @drkBrown;
+@headerBtnClr: @white;
+
+// dialog colors
+@dialogBg: linear-gradient(0deg, #FFFFFF, #FFFFFF),
+linear-gradient(0deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), rgba(255, 255, 255, 0.5);
 @dialogClr: @drkBrown;
 @dialogBrdrClr: @drkBrown;
+
+// other colors
+@otherWalletBtnClr: @malachite;
+
+// transitions
+@sugiBtnTransition: color 60ms linear, background-color 60ms linear, fill 60ms linear, 60ms opacity linear;
+@sugiSizeTransition: width 250ms linear, height 250ms linear, padding 250ms linear, margin 250ms linear;
+@sugiFontTransition: font-size 250ms linear;
 
 * {
   box-sizing: border-box;
@@ -25,113 +58,363 @@ body {
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: @primaryFonts;
   background-color: @siteBeige;
+  @media @xspoint {
+    background-color: @white;
+  }
+}
+
+.btn-animated {
+  transition: @sugiBtnTransition;
 }
 
 .page-wrapper {
-  //background: rgba(0, 0, 0, 0.1);
   width: 100%;
   min-height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
+  //overflow: hidden;
+  transition: @sugiSizeTransition;
+
+  @media @xxlpoint {
+    padding-top: 80px;
+  }
+  @media @xlpoint {
+    padding-top: 80px;
+  }
+  @media @lpoint {
+    padding-top: 64px;
+  }
+  @media @spoint {
+    padding-top: 48px;
+  }
+  @media @xspoint {
+    display: block;
+  }
+
+  .header {
+    background-color: @white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: @sugiSizeTransition;
+
+    @media @xxlpoint {
+      height: 80px;
+    }
+    @media @xlpoint {
+      height: 80px;
+    }
+    @media @lpoint {
+      height: 64px;
+    }
+    @media @spoint {
+      height: 48px;
+    }
+
+    .logo {
+      display: flex;
+      text-decoration: none;
+      background-color: @headerBtnBgClr;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      transition: @sugiSizeTransition;
+
+      @media @xxlpoint {
+        width: 80px;
+      }
+      @media @xlpoint {
+        width: 80px;
+      }
+      @media @lpoint {
+        width: 64px;
+      }
+      @media @spoint {
+        width: 48px;
+      }
+
+      .logo-svg {
+        height: auto;
+        transition: @sugiSizeTransition;
+
+        @media @xxlpoint {
+          width: 47.8px;
+        }
+        @media @xlpoint {
+          width: 47.8px;
+        }
+        @media @lpoint {
+          width: 38.2px;
+        }
+        @media @spoint {
+          width: 28.7px;
+        }
+      }
+    }
+
+    .get-card-btn {
+      display: flex;
+      text-decoration: none;
+      background-color: @headerBtnBgClr;
+      color: @headerBtnClr;
+      font-style: normal;
+      justify-content: center;
+      align-items: center;
+      padding: 0 16px;
+      border-radius: 99px;
+      transition: @sugiSizeTransition,@sugiFontTransition;
+
+      &:hover, &:focus {
+        background-color: @malachite;
+      }
+
+      @media @xxlpoint {
+        height: 48px;
+        margin-right: 32px;
+        font-size: 16px;
+      }
+      @media @xlpoint {
+        height: 48px;
+        margin-right: 32px;
+        font-size: 16px;
+      }
+      @media @lpoint {
+        height: 40px;
+        margin-right: 32px;
+      }
+      @media @spoint {
+        height: 32px;
+        margin-right: 16px;
+        font-size: 14px;
+      }
+    }
+  }
 
   // Color scheme light
   .dialog {
-    min-width: 360px;
-    min-height: 616px;
-    box-shadow: 0 4px 8px rgba(44, 40, 35, 0.12);
-    border-radius: 8px;
+    position: relative;
+    max-width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 4px 64px #D4C8BF;
+    border-radius: 16px 16px 0 0;
     padding: 16px;
-    background-color: @dialogBgClr;
+    background: @dialogBg;
     color: @dialogClr;
     display: flex;
     flex-direction: column;
     align-items: center;
+    //overflow: hidden;
+    transition: @sugiSizeTransition;
+
+    @media @xxlpoint {
+      padding: 56px;
+    }
+    @media @xlpoint {
+      padding: 48px;
+    }
+    @media @lpoint {
+      padding: 40px;
+    }
+    @media @spoint {
+      padding: 32px 25px;
+    }
+    @media @xspoint {
+      width: 100%;
+      height: 100%;
+      box-shadow: none;
+      border-radius: 0;
+    }
 
     .headline {
+      font-family: @secondaryFonts;
+      font-weight: bold;
       text-align: center;
-      font-size: 1.25em; // +-20px
-      margin: 24px 0 0;
-      padding: 16px 0;
-      font-weight: 500;
+      font-size: 1.5em; // +-24px
+      line-height: 1.25; // +-30px
+      padding: 0;
+      margin: 0;
+      transition: @sugiFontTransition;
+
+      @media @xxlpoint {
+        font-size: 32px;
+      }
     }
 
     #walletIdentifier {
       text-align: center;
-      font-size: 18px;
-      padding: 16px 0;
       display: flex;
       align-items: center;
       justify-content: space-around;
       width: auto;
+      max-width: 100%;
+      transition: @sugiSizeTransition;
+
+      span {
+        opacity: 0.5;
+        line-height: 1.25;
+        transition: @sugiFontTransition;
+
+        &:first-child {
+          word-wrap: break-word;
+          max-width: 100%;
+        }
+      }
+      @media @xxlpoint {
+        padding: 32px 0 24px;
+        max-width: 368px;
+      }
+      @media @xlpoint {
+        padding: 32px 0 24px;
+        max-width: 352px;
+      }
+      @media @lpoint {
+        padding: 24px 0;
+        max-width: 280px;
+      }
+      @media @spoint {
+        padding: 24px 7px;
+      }
+      @media @xspoint {
+        padding: 24px 7px;
+      }
     }
 
     #qrCode {
-      height: 220px;
-      width: 220px;
-      margin: 16px 0;
+      height: 160px;
+      width: 160px;
+      margin: 0;
       background: @white;
+      transition: @sugiSizeTransition;
 
+      @media @xxlpoint {
+        height: 192px;
+        width: 192px;
+      }
+      @media @xlpoint {
+        height: 192px;
+        width: 192px;
+      }
+      @media @lpoint {
+        height: 164px;
+        width: 164px;
+      }
+      @media @spoint {
+        height: 160px;
+        width: 160px;
+      }
+      // for qrCode generated by qrcode.js
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      // for dev purposes only (delete in production)
       .dummy-qr-code {
         background: url('assets/images/qr-code-example.png') no-repeat;
+        background-size: cover;
         width: 100%;
         height: 100%;
       }
     }
 
     .amount-wrapper {
-      font-size: 20px;
       word-spacing: 3px;
-      padding: 16px 0;
+      padding: 24px 0;
+      transition: @sugiSizeTransition;
+
+      @media @xxlpoint {
+        padding: 32px 0;
+      }
+      @media @xlpoint {
+        padding: 32px 0;
+      }
+      @media @lpoint {
+        padding: 24px 0;
+      }
 
       #amount {
+        font-family: @secondaryFonts;
+        font-weight: bold;
+        line-height: 1.25;
+        transition: @sugiFontTransition;
+
+        @media @xxlpoint {
+          font-size: 32px;
+        }
+        @media @xlpoint {
+          font-size: 32px;
+        }
+        @media @lpoint {
+          font-size: 24px;
+        }
       }
 
     }
 
     .store-btns-wrapper {
-      margin: 16px 0;
-      border: 1px solid @dialogBrdrClr;
-      position: relative;
+      //position: relative;
       border-radius: 8px;
       min-width: 80%;
-      padding: 16px;
       display: flex;
       align-content: center;
       justify-content: space-around;
 
-      .store-btns-headline {
-        position: absolute;
-        top: -8px;
-        background-color: @white;
-        padding: 0 15px;
-      }
-
       a {
         display: block;
-        width: auto;
-        height: auto;
+
+        height: 40px;
+        background-size: cover;
         text-decoration: none;
-        img {
+        &.app-store {
           width: 120px;
-          height: auto;
+          background: url("assets/images/appStore/normal.png") no-repeat;
+          margin-right: 16px;
+
+          &:hover, &:focus {
+            background: url("assets/images/appStore/hover.png") no-repeat;
+          }
+        }
+
+        &.google-play {
+          width: 135px;
+          background: url("assets/images/googlePlay/normal.png") no-repeat;
+
+          &:hover, &:focus {
+            background: url("assets/images/googlePlay/hover.png") no-repeat;
+          }
         }
       }
     }
 
     .other-wallet-btn {
       display: none;
-      color: @dialogClr;
+      color: @otherWalletBtnClr;
       text-decoration: none;
-      border: 1px solid @dialogBrdrClr;
+      border: 1px solid @otherWalletBtnClr;
       border-radius: 4px;
-      padding: 10px;
+      padding: 9px;
+      margin-top: 24px;
+      text-align: center;
+      line-height: 1.25;
+
+      &:hover, &:focus {
+        color: @white;
+        background-color: @otherWalletBtnClr;
+      }
     }
 
     /*
-        Displaying the ID of the wallet depending on the type.
+        Displaying the ID of the wallet depending on the type. (in [:after] )
     */
     // when currency = EUR
     &.eur {
@@ -146,8 +429,8 @@ body {
 
       #amount:after {
         content: ' EUR';
+        font-size: medium;
         font-family: inherit;
-        font-size: inherit;
         color: inherit;
       }
     }
@@ -161,10 +444,29 @@ body {
         span:not(:first-child) {
           display: none;
         }
+        span {
+          @media @xxlpoint {
+            font-size: 14px;
+            line-height: 1.4;//+-20
+          }
+          @media @xlpoint {
+            font-size: 14px;
+            line-height: 1.4;//+-20
+          }
+          @media @lpoint {
+            font-size: 12px;
+          }
+        }
       }
 
       .other-wallet-btn {
         display: block;
+      }
+
+      #amount:after {
+        font-size: medium;
+        font-family: inherit;
+        color: inherit;
       }
     }
 
@@ -176,9 +478,6 @@ body {
 
       #amount:after {
         content: ' ETH';
-        font-family: inherit;
-        font-size: inherit;
-        color: inherit;
       }
     }
 
@@ -190,10 +489,18 @@ body {
 
       #amount:after {
         content: ' BTC';
-        font-family: inherit;
-        font-size: inherit;
-        color: inherit;
       }
+    }
+
+    .rectangles {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 16px;
+      margin-bottom: -8px;
+      background: url("../SugiPaymentRequestExpress/public/rectangle.svg") repeat-x;
+      background-position: center;
     }
   }
 }
