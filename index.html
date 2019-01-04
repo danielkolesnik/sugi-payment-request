@@ -15,24 +15,20 @@
 <body>
 <div class="page-wrapper">
     <header class="header">
-        <a class="logo" href="#"><img class="logo-svg" src="assets/images/Sugi-logo.svg" alt="Sugi logo."></a>
+        <a class="logo" href="#"><img class="logo-svg" src="assets/images/logo.svg" alt="Sugi logo."></a>
         <a class="get-card-btn btn-animated" href="#">Get Sugi Card</a>
     </header>
     <!-- some content on the page displayed depending on class e.g. eth | btc | eur -->
     <main class="dialog light btc">
         <h1 class="headline">Payment request</h1>
+        <div id="errorMessage"><img src="assets/images/alert-box.svg" alt="Error"><p>{{{errorMessage}}}</p></div>
+        <noscript>
+            <img src="/assets/images/alert-box.svg" alt="Error">
+            <p>Enable JavaScript in your Browser -> Settings for better performance.</p>
+        </noscript>
         <div id="walletIdentifier">
             <span>
                 08cfc43a10e81f84d6420568f191a713772aca850e3a682b0a00e882c40b07f9
-            </span>
-            <span>
-                1000
-            </span>
-            <span>
-                1000
-            </span>
-            <span>
-                1000
             </span>
         </div>
         <div id="qrCode">
